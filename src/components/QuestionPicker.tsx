@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Question from '../types/Question';
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import Flashcard from '../types/Flashcard';
 import { QuestionRandomizer } from '../utils/QuestionRandomizer';
 import { json } from 'stream/consumers';
@@ -30,7 +30,7 @@ const QuestionPicker: React.FC<QuestionPickerProps> = ({ startNewTest }) => {
     const [qPoolSize, setQPoolSize] = useState<number>(30);
     const [currentQuiz, setCurrentQuiz] = useState<QuizFile>();
     const [allCheckedFile, setAllCheckedFile] = useState<boolean>(false);
-
+    const [error, setError] = useState<JSX.Element>();
 
     useEffect(()=>{
         fetch(baseDir + "/quiz.json").then(res => res.json()).then(json => {
@@ -45,6 +45,7 @@ const QuestionPicker: React.FC<QuestionPickerProps> = ({ startNewTest }) => {
                 
             }
         })
+        .catch(()=> setError(<>No <i>quiz.json</i> file found or not valid, please insert one compliant to the docs, then reload the page</>));
     }, [])
 
     useEffect(()=>{
@@ -52,6 +53,12 @@ const QuestionPicker: React.FC<QuestionPickerProps> = ({ startNewTest }) => {
             setJsonList(currentQuiz.questions);
             setCheckedFile(currentQuiz.questions.map(()=>false))
             localStorage.setItem("recentQuizTopic", currentQuiz.title)
+            if (currentQuiz.questions.length === 0) {
+                setError(<>The quiz <strong>{currentQuiz.title}</strong> has no questions</>);
+            }
+            else {
+                setError(undefined)
+            }
         }
     }, [currentQuiz])
 
@@ -151,6 +158,7 @@ const QuestionPicker: React.FC<QuestionPickerProps> = ({ startNewTest }) => {
                         {quizList.map((el =>  <MenuItem key={el.title}value={el.title}>{el.title}</MenuItem>))}
                     </Select>
                     </FormControl>
+                {error && <Box sx={{margin: "10px 0 10px 0"}}><Alert severity="error">{error}</Alert></Box>}
                 {jsonList.length > 0 && <>
                     <Typography variant="h6" component="h6" marginTop={"10px"}>
                         Choose sub argument of the quiz

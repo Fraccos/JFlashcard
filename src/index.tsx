@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 
-export const baseDir = "/jflashcard"
+export const baseDir = ""
 
 const darkTheme = createTheme({
   palette: {
