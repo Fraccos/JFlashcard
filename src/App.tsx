@@ -38,36 +38,38 @@ function App() {
     navigate("/recap");
   }
 
-  const shortcut:shortcutInfo[] = [
-    {
-      key: "J",
-      desc: "Flashcard precedente"
-    },
-    {
-      key: "K",
-      desc: "Flashcard successiva"
-    },
-    {
-      key: "L",
-      desc: "Mostra soluzioni"
-    },
-    {
-      key: "T",
-      desc: "Termina Test"
-    },
-    {
-      key: "U",
-      desc: "Risposta Errata"
-    },
-    {
-      key: "I",
-      desc: "Risposta Parzialmente Corretta"
-    },
-    {
-      key: "O",
-      desc: "Risposta Corretta"
-    },
-  ]
+  const shortcut:shortcutInfo[] = 
+    [
+      {
+        "key": "J",
+        "desc": "Previous Flashcard"
+      },
+      {
+        "key": "K",
+        "desc": "Next Flashcard"
+      },
+      {
+        "key": "L",
+        "desc": "Show Solutions"
+      },
+      {
+        "key": "T",
+        "desc": "End Test"
+      },
+      {
+        "key": "U",
+        "desc": "Wrong Answer"
+      },
+      {
+        "key": "I",
+        "desc": "Partially Correct Answer"
+      },
+      {
+        "key": "O",
+        "desc": "Correct Answer"
+      }
+    ]
+  
   return (
     <div className="App">
       <Container style={{marginTop:"10px"}}>
