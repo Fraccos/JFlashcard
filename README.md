@@ -6,6 +6,12 @@ Is a Frontend React based application, written in Typescript, to easly repeat us
 This is a project built in less than **24 hours** as a way to improve my study workflow as a Computer Engineering student, but this tools can be used for every kind of subjects.
 
 
+## Demo
+
+![Demo of JFlashcard](https://raw.githubusercontent.com/Fraccos/Fraccos/main/JFlashcardDemo2.png)
+
+
+
 ## Features
 
 - Easy to use UI
